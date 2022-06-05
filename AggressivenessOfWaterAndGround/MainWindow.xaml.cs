@@ -27,13 +27,13 @@ namespace AggressivenessOfWaterAndGround
 
 
 
-        private void AmountOfSO4orHCO3_TextChanged(object sender, TextChangedEventArgs e)
+        private void Water_AmountOfSO4orHCO3_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (sender is TextBox && ((TextBox)sender).Name == "AmountOfSO4")
+            if (sender is TextBox && ((TextBox)sender).Name == "Water_AmountOfSO4")
             {
                 WaterData.AggressivenessData.AmountSO4 = ((TextBox)sender).Text != "" ? uint.Parse(((TextBox)sender).Text) : 0;
             }
-            if (sender is TextBox && ((TextBox)sender).Name == "AmountOfHCO3")
+            if (sender is TextBox && ((TextBox)sender).Name == "Water_AmountOfHCO3")
             {
                 WaterData.AggressivenessData.AmountHCO3 = ((TextBox)sender).Text != "" ? double.Parse(((TextBox)sender).Text) : 0;
             }
@@ -70,7 +70,7 @@ namespace AggressivenessOfWaterAndGround
             if (!char.IsDigit(e.Text, 0))
             {
                 //AmountOfHCO3 can contaned a type double, so there is checking that user inputed a only one ","
-                if (sender is TextBox && ((TextBox)sender).Name == "AmountOfHCO3" &&
+                if (sender is TextBox && ((TextBox)sender).Name == "Water_AmountOfHCO3" &&
                     (e.Text == ",") && !((TextBox)sender).Text.Contains(",") &&
                     ((TextBox)sender).Text.Length != 0)
                 {
@@ -108,9 +108,9 @@ namespace AggressivenessOfWaterAndGround
         private TextBlock[] GetAllElementsDisplayingAgr()
         {
             TextBlock[] elements = {
-                                    IW4, IW6, IW8, IW10_W14, IW16_W20,
-                                    IIW4, IIW6, IIW8, IIW10_W14, IIW16_W20,
-                                    IIIW4, IIIW6, IIIW8, IIIW10_W14, IIIW16_W20,
+                                    WaterSO4_IW4, WaterSO4_IW6, WaterSO4_IW8, WaterSO4_IW10_W14, WaterSO4_IW16_W20,
+                                    WaterSO4_IIW4, WaterSO4_IIW6, WaterSO4_IIW8, WaterSO4_IIW10_W14, WaterSO4_IIW16_W20,
+                                    WaterSO4_IIIW4, WaterSO4_IIIW6, WaterSO4_IIIW8, WaterSO4_IIIW10_W14, WaterSO4_IIIW16_W20,
                                    };
             return elements;
 
@@ -120,9 +120,9 @@ namespace AggressivenessOfWaterAndGround
         private Border[] GetAllBorderOfElementsDisplayingAgr()
         {
             Border[] borderElements = {
-                                       Border_IW4, Border_IW6, Border_IW8, Border_IW10_W14, Border_IW16_W20,
-                                       Border_IIW4, Border_IIW6, Border_IIW8, Border_IIW10_W14, Border_IIW16_W20,
-                                       Border_IIIW4, Border_IIIW6, Border_IIIW8, Border_IIIW10_W14, Border_IIIW16_W20,
+                                       WaterSO4_Border_IW4, WaterSO4_Border_IW6, WaterSO4_Border_IW8, WaterSO4_Border_IW10_W14, WaterSO4_Border_IW16_W20,
+                                       WaterSO4_Border_IIW4, WaterSO4_Border_IIW6, WaterSO4_Border_IIW8, WaterSO4_Border_IIW10_W14, WaterSO4_Border_IIW16_W20,
+                                       WaterSO4_Border_IIIW4, WaterSO4_Border_IIIW6, WaterSO4_Border_IIIW8, WaterSO4_Border_IIIW10_W14, WaterSO4_Border_IIIW16_W20,
                                       };
             return borderElements;
         }
