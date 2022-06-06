@@ -47,12 +47,12 @@
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
-        <!--Style for size the custom table-->
-        <Style x:Key="ColumOfCustomDataTable" TargetType="ColumnDefinition">
+        <!--Style for size the custom table of SO4-->
+        <Style x:Key="SO4ColumOfCustomDataTable" TargetType="ColumnDefinition">
             <Setter Property="MinWidth" Value="110"/>
         </Style>
 
-        <Style x:Key="RowOfCustomDataTable" TargetType="RowDefinition">
+        <Style x:Key="SO4RowOfCustomDataTable" TargetType="RowDefinition">
             <Setter Property="MinHeight" Value="30"/>
         </Style>
 
@@ -62,19 +62,21 @@
             <TabItem Header="Вода" Focusable="False">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" MinWidth="280"/>
+                            <ColumnDefinition Width="0.2*" MinWidth="130"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="0.3*"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.5*" MinWidth="280"/>
-                            <ColumnDefinition Width="0.5*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
                         <!--Elements of the first row-->
+
+                        <!--first column-->
                         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <!--Lables that use differ styles for text-->
                             <TextBlock Margin="0,4">
@@ -104,7 +106,8 @@
                             </TextBlock>
 
                         </StackPanel>
-
+                        
+                        <!--second column-->
                         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" KeyDown="TextBox_PreviewKeyDown">
                             <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2"
                                      PreviewTextInput="TextBox_PreviewTextInput"
@@ -118,6 +121,73 @@
                                      GotFocus="AmountOfSO4_GotFocus"/>
                             <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"/>
                         </StackPanel>
+                        
+                        <!--thrid column-->
+                        <Grid Grid.Row="0" Grid.Column="3" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                                <TextBlock Text="Толщина защитного слоя бетона, мм" Style="{StaticResource HeaderOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                    <Run Text="Максимальная допустимая концентрация хлоридов в жидкой среде, мг/дм"/><!--
+                                    --><Run Text="3" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text=", для бетона с коэффициентом диффузии, см"/><!--
+                                    --><Run Text="2" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text="/с (маркам по водопроницаемости)"/>
+                                </TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="1">
+                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                    <Run Text="Менее 5 * 10"/><!--
+                                    --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text=" до 1 * 10"/><!--
+                                    --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text=" (W6 - W8)"/>
+                                </TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="2">
+                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                    <Run Text="Менее 1 * 10"/><!--
+                                    --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text=" до 5 * 10"/><!--
+                                    --><Run Text="-9" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text=" (W10 - W14)"/>
+                                </TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="3">
+                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                    <Run Text="Менее 5 * 10"/><!--
+                                    --><Run Text="-9" Style="{StaticResource SuperscriptRunText}"/><!--
+                                    --><Run Text=" &#x0a;(W10 - W14)"/>
+                                </TextBlock>
+                            </Border>
+                            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
+                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                    <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
+                                    <RadioButton GroupName="filtration_coefficients" Content="0,1 м/сут и более" Padding="0,0,0,-2"
+                                                 Focusable="False"/>
+                                    <Run Text="/"/>
+                                    <RadioButton GroupName="filtration_coefficients" Content="менее 0,1 м/сут" Padding="0,0,0,-2"
+                                                 Focusable="False"/>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
 
                         <!--Elements of the second row-->
                         <TextBlock Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0">
@@ -131,18 +201,18 @@
                         <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.4*" MinWidth="230"/>
-                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTable}"/>
+                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
+                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
+                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
+                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
+                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
                                 <RowDefinition MinHeight="15"/>
-                                <RowDefinition Style="{StaticResource RowOfCustomDataTable}"/>
+                                <RowDefinition Style="{StaticResource SO4RowOfCustomDataTable}"/>
                                 <RowDefinition MinHeight="65"/>
-                                <RowDefinition Style="{StaticResource RowOfCustomDataTable}"/>
+                                <RowDefinition Style="{StaticResource SO4RowOfCustomDataTable}"/>
                             </Grid.RowDefinitions>
 
                             <Border Grid.Row="0" Grid.Column="0">
