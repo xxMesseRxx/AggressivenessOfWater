@@ -180,11 +180,15 @@
                             <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
                                 <TextBlock Style="{StaticResource HeaderOfCustomTable}">
                                     <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
-                                    <RadioButton GroupName="filtration_coefficients" Content="0,1 м/сут и более" Padding="0,0,0,-2"
-                                                 Focusable="False"/>
+                                    <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients" IsChecked="True"
+                                                 Padding="0,0,0,-2" Focusable="False" Unchecked="Сross_Out_Text" Checked="Strikethrough_Clear">
+                                        <TextBlock x:Name="TextCoefFiltratMoreThan01" Text="0,1 м/сут и более"/>
+                                    </RadioButton>
                                     <Run Text="/"/>
-                                    <RadioButton GroupName="filtration_coefficients" Content="менее 0,1 м/сут" Padding="0,0,0,-2"
-                                                 Focusable="False"/>
+                                    <RadioButton x:Name="CoefFiltratLessThan01" GroupName="filtration_coefficients"
+                                                 Padding="0,0,0,-2" Focusable="False" Unchecked="Сross_Out_Text" Checked="Strikethrough_Clear">
+                                        <TextBlock x:Name="TextCoefFiltratLessThan01" Text="менее 0,1 м/сут" TextDecorations="Strikethrough"/>
+                                    </RadioButton>
                                 </TextBlock>
                             </Border>
                         </Grid>

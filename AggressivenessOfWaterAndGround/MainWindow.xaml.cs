@@ -135,5 +135,29 @@ namespace AggressivenessOfWaterAndGround
                 ((TextBox)sender).SelectAll();
             }
         }
+
+        private void Сross_Out_Text(object sender, RoutedEventArgs e)
+        {
+            if (((RadioButton)sender).Name == "CoefFiltratMoreThan01")
+            {
+                TextCoefFiltratMoreThan01.TextDecorations = TextDecorations.Strikethrough;
+            }
+            if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
+            {
+                TextCoefFiltratLessThan01.TextDecorations = TextDecorations.Strikethrough;
+            }
+        }
+
+        private void Strikethrough_Clear(object sender, RoutedEventArgs e)
+        {
+            if (((RadioButton)sender).Name == "CoefFiltratMoreThan01")
+            {
+                TextCoefFiltratMoreThan01.TextDecorations = null;
+            }
+            if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
+            {
+                TextCoefFiltratLessThan01.TextDecorations = null;
+            }
+        }
     }
 }
