@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AggressivenessOfWaterAndGround"
         mc:Ignorable="d"
-        Title="Агрессивность воды и грунтов" Height="500" Width="1100" MinWidth="825" Loaded="Window_Loaded">
+        Title="Агрессивность воды и грунтов" Height="550" Width="1100" MinWidth="850" Loaded="Window_Loaded">
 
     <Window.Resources>
         <!--Set of styles for Run in TextBlock, to set different font styles in one TextBlock-->
@@ -34,7 +34,7 @@
         </Style>
 
         <!--Style for column headers and row headers in custom table, which was made of TextBlocks-->
-        <Style x:Key="HeaderOfCustomTable" TargetType="TextBlock">
+        <Style x:Key="TextBlockOfCustomTable" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="TextAlignment" Value="Center"/>
@@ -48,7 +48,7 @@
         </Style>
 
         <!--Style for size the custom table of SO4-->
-        <Style x:Key="SO4ColumOfCustomDataTable" TargetType="ColumnDefinition">
+        <Style x:Key="ColumOfCustomDataTables" TargetType="ColumnDefinition">
             <Setter Property="MinWidth" Value="110"/>
         </Style>
 
@@ -69,7 +69,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.3*"/>
+                            <RowDefinition Height="0.7*"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
@@ -126,9 +126,9 @@
                         <Grid Grid.Row="0" Grid.Column="3" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
@@ -141,10 +141,10 @@
                             </Grid.RowDefinitions>
 
                             <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
-                                <TextBlock Text="Толщина защитного слоя бетона, мм" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="Толщина защитного слоя бетона, мм" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
-                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Максимальная допустимая концентрация хлоридов в жидкой среде, мг/дм"/><!--
                                     --><Run Text="3" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=", для бетона с коэффициентом диффузии, см"/><!--
@@ -153,7 +153,7 @@
                                 </TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="1">
-                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Менее 5 * 10"/><!--
                                     --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=" до 1 * 10"/><!--
@@ -162,7 +162,7 @@
                                 </TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="2">
-                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Менее 1 * 10"/><!--
                                     --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=" до 5 * 10"/><!--
@@ -171,14 +171,14 @@
                                 </TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="3">
-                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Менее 5 * 10"/><!--
                                     --><Run Text="-9" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=" &#x0a;(W10 - W14)"/>
                                 </TextBlock>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
-                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
                                     <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
                                                  Padding="0,0,0,-2" Focusable="False" Unchecked="Сross_Out_Text" Checked="Strikethrough_Clear">
@@ -190,6 +190,42 @@
                                         <TextBlock x:Name="TextCoefFiltratLessThan01" Text="менее 0,1 м/сут" TextDecorations="Strikethrough"/>
                                     </RadioButton>
                                 </TextBlock>
+                            </Border>
+                            <Border Grid.Row="3" Grid.Column="0">
+                                <TextBlock Text="20" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="4" Grid.Column="0">
+                                <TextBlock Text="30" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="5" Grid.Column="0">
+                                <TextBlock Text="50" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="3" Grid.Column="1">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="3" Grid.Column="2">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="3" Grid.Column="3">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="4" Grid.Column="1">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="4" Grid.Column="2">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="4" Grid.Column="3">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="5" Grid.Column="1">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="5" Grid.Column="2">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            </Border>
+                            <Border Grid.Row="5" Grid.Column="3">
+                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                         </Grid>
 
@@ -205,11 +241,11 @@
                         <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.4*" MinWidth="230"/>
-                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
-                                <ColumnDefinition Style="{StaticResource SO4ColumOfCustomDataTable}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
+                                <ColumnDefinition Style="{StaticResource ColumOfCustomDataTables}"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
@@ -220,29 +256,29 @@
                             </Grid.RowDefinitions>
 
                             <Border Grid.Row="0" Grid.Column="0">
-                                <TextBlock Text="Вид цемента" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="Вид цемента" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="1">
-                                <TextBlock Text="W4" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="W4" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="2">
-                                <TextBlock Text="W6" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="W6" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="3">
-                                <TextBlock Text="W8" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="W8" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="4">
-                                <TextBlock Text="W10-W14" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="W10-W14" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="5">
-                                <TextBlock Text="W16-W20" Style="{StaticResource HeaderOfCustomTable}"/>
+                                <TextBlock Text="W16-W20" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="0">
                                 <TextBlock Text="Портландцемент,&#10; не вошедший в группу II"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="0">
-                                <TextBlock Style="{StaticResource HeaderOfCustomTable}">
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Портландцемент с содержанием в&#10; клинкере C"/><!--
                                     --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
                                     --><Run Text="S не более 65%, С"/><!--
@@ -256,68 +292,68 @@
                             </Border>
                             <Border Grid.Row="3" Grid.Column="0">
                                 <TextBlock Text="Сульфатостойкие цементы"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
 
                             <Border x:Name="WaterSO4_Border_IW4" Grid.Row="1" Grid.Column="1">
                                 <TextBlock x:Name="WaterSO4_IW4" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IW6" Grid.Row="1" Grid.Column="2">
                                 <TextBlock x:Name="WaterSO4_IW6" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IW8" Grid.Row="1" Grid.Column="3">
                                 <TextBlock x:Name="WaterSO4_IW8" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IW10_W14" Grid.Row="1" Grid.Column="4">
                                 <TextBlock x:Name="WaterSO4_IW10_W14" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IW16_W20" Grid.Row="1" Grid.Column="5">
                                 <TextBlock x:Name="WaterSO4_IW16_W20" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIW4" Grid.Row="2" Grid.Column="1">
                                 <TextBlock x:Name="WaterSO4_IIW4" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIW6" Grid.Row="2" Grid.Column="2">
                                 <TextBlock x:Name="WaterSO4_IIW6" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIW8" Grid.Row="2" Grid.Column="3">
                                 <TextBlock x:Name="WaterSO4_IIW8" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIW10_W14" Grid.Row="2" Grid.Column="4">
                                 <TextBlock x:Name="WaterSO4_IIW10_W14" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIW16_W20" Grid.Row="2" Grid.Column="5">
                                 <TextBlock x:Name="WaterSO4_IIW16_W20" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIIW4" Grid.Row="3" Grid.Column="1">
                                 <TextBlock x:Name="WaterSO4_IIIW4" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIIW6" Grid.Row="3" Grid.Column="2">
                                 <TextBlock x:Name="WaterSO4_IIIW6" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIIW8" Grid.Row="3" Grid.Column="3">
                                 <TextBlock x:Name="WaterSO4_IIIW8" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIIW10_W14" Grid.Row="3" Grid.Column="4">
                                 <TextBlock x:Name="WaterSO4_IIIW10_W14" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IIIW16_W20" Grid.Row="3" Grid.Column="5">
                                 <TextBlock x:Name="WaterSO4_IIIW16_W20" Text="Неагрессивная"
-                                           Style="{StaticResource HeaderOfCustomTable}"/>
+                                           Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                         </Grid>
                     </Grid>
