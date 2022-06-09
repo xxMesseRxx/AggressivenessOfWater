@@ -26,6 +26,11 @@ namespace AggressivenessOfWaterAndGround
         }
 
 
+        //performs minor adjustments that didn't work out with XAML
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CoefFiltratMoreThan01.IsChecked = true;
+        }
 
         private void Water_AmountOfSO4orHCO3_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -159,5 +164,6 @@ namespace AggressivenessOfWaterAndGround
                 TextCoefFiltratLessThan01.TextDecorations = null;
             }
         }
+
     }
 }

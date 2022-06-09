@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AggressivenessOfWaterAndGround"
         mc:Ignorable="d"
-        Title="Агрессивность воды и грунтов" Height="500" Width="1100" MinWidth="825">
+        Title="Агрессивность воды и грунтов" Height="500" Width="1100" MinWidth="825" Loaded="Window_Loaded">
 
     <Window.Resources>
         <!--Set of styles for Run in TextBlock, to set different font styles in one TextBlock-->
@@ -180,7 +180,7 @@
                             <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
                                 <TextBlock Style="{StaticResource HeaderOfCustomTable}">
                                     <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
-                                    <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients" IsChecked="True"
+                                    <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
                                                  Padding="0,0,0,-2" Focusable="False" Unchecked="Сross_Out_Text" Checked="Strikethrough_Clear">
                                         <TextBlock x:Name="TextCoefFiltratMoreThan01" Text="0,1 м/сут и более"/>
                                     </RadioButton>
