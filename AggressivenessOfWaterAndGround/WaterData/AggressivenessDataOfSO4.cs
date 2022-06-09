@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AggressivenessOfWaterAndGround.WaterData
 {
-    internal static class AggressivenessData
+    internal static class AggressivenessDataOfSO4
     {
         public static uint AmountSO4 { get; set; }
         private static double amountHCO3;

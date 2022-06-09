@@ -36,16 +36,16 @@ namespace AggressivenessOfWaterAndGround
         {
             if (sender is TextBox && ((TextBox)sender).Name == "Water_AmountOfSO4")
             {
-                WaterData.AggressivenessData.AmountSO4 = ((TextBox)sender).Text != "" ? uint.Parse(((TextBox)sender).Text) : 0;
+                WaterData.AggressivenessDataOfSO4.AmountSO4 = ((TextBox)sender).Text != "" ? uint.Parse(((TextBox)sender).Text) : 0;
             }
             if (sender is TextBox && ((TextBox)sender).Name == "Water_AmountOfHCO3")
             {
-                WaterData.AggressivenessData.AmountHCO3 = ((TextBox)sender).Text != "" ? double.Parse(((TextBox)sender).Text) : 0;
+                WaterData.AggressivenessDataOfSO4.AmountHCO3 = ((TextBox)sender).Text != "" ? double.Parse(((TextBox)sender).Text) : 0;
             }
 
             TextBlock[] ElementOfView = GetAllElementsDisplayingAgr();
             Border[] BorderOfElementOfView = GetAllBorderOfElementsDisplayingAgr();
-            string[] DataForView = WaterData.AggressivenessData.GetAllCement();
+            string[] DataForView = WaterData.AggressivenessDataOfSO4.GetAllCement();
 
             //Sets value to element textblock and changes background color
             for (int i = 0; i < ElementOfView.Length; i++)
