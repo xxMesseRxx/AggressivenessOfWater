@@ -43,8 +43,8 @@ namespace AggressivenessOfWaterAndGround
                 WaterData.AggressivenessDataOfSO4.AmountHCO3 = ((TextBox)sender).Text != "" ? double.Parse(((TextBox)sender).Text) : 0;
             }
 
-            TextBlock[] ElementOfView = GetAllElementsDisplayingAgr();
-            Border[] BorderOfElementOfView = GetAllBorderOfElementsDisplayingAgr();
+            TextBlock[] ElementOfView = GetAllElementsWhichDisplayingAgrOfSO4();
+            Border[] BorderOfElementOfView = GetAllBorderOfElementsWhichDisplayingAgrOfSO4();
             string[] DataForView = WaterData.AggressivenessDataOfSO4.GetAllCement();
 
             //Sets value to element textblock and changes background color
@@ -109,8 +109,8 @@ namespace AggressivenessOfWaterAndGround
             }
         }
 
-        //Returns set, which contains elements of view, which are displaying the power of aggressiveness
-        private TextBlock[] GetAllElementsDisplayingAgr()
+        //Returns set, which contains elements of view, which are displaying the power aggressiveness of SO4
+        private TextBlock[] GetAllElementsWhichDisplayingAgrOfSO4()
         {
             TextBlock[] elements = {
                                     WaterSO4_IW4, WaterSO4_IW6, WaterSO4_IW8, WaterSO4_IW10_W14, WaterSO4_IW16_W20,
@@ -121,8 +121,8 @@ namespace AggressivenessOfWaterAndGround
 
         }
 
-        //Returns set, which contains borders of elements of view, which are displaying the power of aggressiveness
-        private Border[] GetAllBorderOfElementsDisplayingAgr()
+        //Returns set, which contains borders of elements of view, which are displaying the power aggressiveness of SO4
+        private Border[] GetAllBorderOfElementsWhichDisplayingAgrOfSO4()
         {
             Border[] borderElements = {
                                        WaterSO4_Border_IW4, WaterSO4_Border_IW6, WaterSO4_Border_IW8, WaterSO4_Border_IW10_W14, WaterSO4_Border_IW16_W20,
@@ -133,7 +133,7 @@ namespace AggressivenessOfWaterAndGround
         }
 
         //Selects all text in textBox when it got focus
-        private void AmountOfSO4_GotFocus(object sender, RoutedEventArgs e)
+        private void SelectAll_when_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox)
             {

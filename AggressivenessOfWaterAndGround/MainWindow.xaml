@@ -113,13 +113,17 @@
                                      PreviewTextInput="TextBox_PreviewTextInput"
                                      PreviewKeyDown="TextBox_PreviewKeyDown"
                                      TextChanged="Water_AmountOfSO4orHCO3_TextChanged" 
-                                     GotFocus="AmountOfSO4_GotFocus"/>
+                                     GotFocus="SelectAll_when_GotFocus"/>
                             <TextBox x:Name="Water_AmountOfHCO3" Width="100" Margin="0,3" Padding="0,0,0,2"
                                      PreviewTextInput="TextBox_PreviewTextInput"
                                      PreviewKeyDown="TextBox_PreviewKeyDown"
                                      TextChanged="Water_AmountOfSO4orHCO3_TextChanged"
-                                     GotFocus="AmountOfSO4_GotFocus"/>
-                            <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"/>
+                                     GotFocus="SelectAll_when_GotFocus"/>
+                            <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"
+                                     PreviewTextInput="TextBox_PreviewTextInput"
+                                     PreviewKeyDown="TextBox_PreviewKeyDown"
+                                     
+                                     GotFocus="SelectAll_when_GotFocus"/>
                         </StackPanel>
                         
                         <!--thrid column-->
@@ -174,7 +178,7 @@
                                 <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Менее 5 * 10"/><!--
                                     --><Run Text="-9" Style="{StaticResource SuperscriptRunText}"/><!--
-                                    --><Run Text=" &#x0a;(W10 - W14)"/>
+                                    --><Run Text=" &#x0a;(W16 - W20)"/>
                                 </TextBlock>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
@@ -200,32 +204,32 @@
                             <Border Grid.Row="5" Grid.Column="0">
                                 <TextBlock Text="50" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="1">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_20_W6_W8" Grid.Row="3" Grid.Column="1">
+                                <TextBlock Name="WaterCL_20_W6_W8" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="2">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_20_W10_W14" Grid.Row="3" Grid.Column="2">
+                                <TextBlock Name="WaterCL_20_W10_W14" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="3">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_20_W16_W20" Grid.Row="3" Grid.Column="3">
+                                <TextBlock Name="WaterCL_20_W16_W20" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="1">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_30_W6_W8" Grid.Row="4" Grid.Column="1">
+                                <TextBlock Name="WaterCL_30_W6_W8" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="2">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_30_W10_W14" Grid.Row="4" Grid.Column="2">
+                                <TextBlock Name="WaterCL_30_W10_W14" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="3">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_30_W16_W20" Grid.Row="4" Grid.Column="3">
+                                <TextBlock Name="WaterCL_30_W16_W20" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="1">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_50_W6_W8" Grid.Row="5" Grid.Column="1">
+                                <TextBlock Name="WaterCL_50_W6_W8" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="2">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_50_W10_W14" Grid.Row="5" Grid.Column="2">
+                                <TextBlock Name="WaterCL_50_W10_W14" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="3">
-                                <TextBlock Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
+                            <Border Name="WaterCL_Border_50_W16_W20" Grid.Row="5" Grid.Column="3">
+                                <TextBlock Name="WaterCL_50_W16_W20" Text="Неагрессивная" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                         </Grid>
 
