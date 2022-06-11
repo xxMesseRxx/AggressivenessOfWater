@@ -32,8 +32,9 @@ namespace AggressivenessOfWaterAndGround
             CoefFiltratMoreThan01.IsChecked = true;
         }
 
-        private void Water_AmountOfSO4orHCO3_TextChanged(object sender, TextChangedEventArgs e)
+        private void WaterAmountOfSO4orHCO3_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Depending on the sender (text block of SO4 or HCO3) it changes value variable amountSO4 or amountHCO3
             if (sender is TextBox && ((TextBox)sender).Name == "Water_AmountOfSO4")
             {
                 WaterData.AggressivenessDataOfSO4.AmountSO4 = ((TextBox)sender).Text != "" ? uint.Parse(((TextBox)sender).Text) : 0;
@@ -65,6 +66,26 @@ namespace AggressivenessOfWaterAndGround
                     BorderOfElementOfView[i].Background = new SolidColorBrush(Color.FromRgb(229, 240, 105));
                 
                 else if (DataForView[i] == "Сильноагрессивная")
+                    BorderOfElementOfView[i].Background = new SolidColorBrush(Color.FromRgb(214, 84, 45));
+            }
+        }
+
+        private void WaterAmountOfCl_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            WaterData.AggressivenessDataOfCl.AmountCL = ((TextBox)sender).Text != "" ? uint.Parse(((TextBox)sender).Text) : 0;
+            TextBlock[] ElementOfView = GetAllElementsWhichDisplayingAgr("Cl");
+            Border[] BorderOfElementOfView = GetAllBorderOfElementsWhichDisplayingAgr("Cl");
+            string[] DataForView = WaterData.AggressivenessDataOfCl.GetAllCement();
+
+            //Sets value to element textblock and changes background color
+            for (int i = 0; i < ElementOfView.Length; i++)
+            {
+                ElementOfView[i].Text = DataForView[i];
+
+                if (DataForView[i] == "Неагрессивная")
+                    BorderOfElementOfView[i].Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+
+                else if (DataForView[i] == "Агрессивная")
                     BorderOfElementOfView[i].Background = new SolidColorBrush(Color.FromRgb(214, 84, 45));
             }
         }
@@ -113,7 +134,7 @@ namespace AggressivenessOfWaterAndGround
         /// Returns set, which contains elements of view, which are displaying the power aggressiveness of SO4
         /// </summary>
         /// <param name="whichElementsToReturn">
-        /// Enter element of view: SO4 or СL
+        /// Enter element of view: SO4 or Сl
         /// </param>
         private TextBlock[] GetAllElementsWhichDisplayingAgr(string whichElementsToReturn)
         {
@@ -143,7 +164,7 @@ namespace AggressivenessOfWaterAndGround
         /// Returns set, which contains borders of elements of view, which are displaying the power aggressiveness of SO4
         /// </summary>
         /// <param name="whichElementBordersToReturn">
-        /// Enter element of view: SO4 or СL
+        /// Enter element of view: SO4 or Сl
         /// </param>
         private Border[] GetAllBorderOfElementsWhichDisplayingAgr(string whichElementBordersToReturn)
         {
@@ -170,7 +191,7 @@ namespace AggressivenessOfWaterAndGround
         }
 
         //Selects all text in textBox when it got focus
-        private void SelectAll_when_GotFocus(object sender, RoutedEventArgs e)
+        private void SelectAllWhen_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox)
             {
@@ -178,11 +199,25 @@ namespace AggressivenessOfWaterAndGround
             }
         }
 
-        private void Сross_Out_Text(object sender, RoutedEventArgs e)
+        private void IsChecked_Strikethrough_Clear(object sender, RoutedEventArgs e)
+        {
+            if (((RadioButton)sender).Name == "CoefFiltratMoreThan01")
+            {
+                TextCoefFiltratMoreThan01.TextDecorations = null;
+                WaterData.AggressivenessDataOfCl.CoefFiltratMoreThan01 = true;
+            }
+            if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
+            {
+                TextCoefFiltratLessThan01.TextDecorations = null;
+            }
+        }
+
+        private void UnChecked_СrossOut_Text(object sender, RoutedEventArgs e)
         {
             if (((RadioButton)sender).Name == "CoefFiltratMoreThan01")
             {
                 TextCoefFiltratMoreThan01.TextDecorations = TextDecorations.Strikethrough;
+                WaterData.AggressivenessDataOfCl.CoefFiltratMoreThan01 = false;
             }
             if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
             {
@@ -190,17 +225,6 @@ namespace AggressivenessOfWaterAndGround
             }
         }
 
-        private void Strikethrough_Clear(object sender, RoutedEventArgs e)
-        {
-            if (((RadioButton)sender).Name == "CoefFiltratMoreThan01")
-            {
-                TextCoefFiltratMoreThan01.TextDecorations = null;
-            }
-            if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
-            {
-                TextCoefFiltratLessThan01.TextDecorations = null;
-            }
-        }
 
     }
 }
