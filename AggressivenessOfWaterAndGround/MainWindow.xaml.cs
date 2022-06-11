@@ -43,8 +43,8 @@ namespace AggressivenessOfWaterAndGround
                 WaterData.AggressivenessDataOfSO4.AmountHCO3 = ((TextBox)sender).Text != "" ? double.Parse(((TextBox)sender).Text) : 0;
             }
 
-            TextBlock[] ElementOfView = GetAllElementsWhichDisplayingAgrOfSO4();
-            Border[] BorderOfElementOfView = GetAllBorderOfElementsWhichDisplayingAgrOfSO4();
+            TextBlock[] ElementOfView = GetAllElementsWhichDisplayingAgr("SO4");
+            Border[] BorderOfElementOfView = GetAllBorderOfElementsWhichDisplayingAgr("SO4");
             string[] DataForView = WaterData.AggressivenessDataOfSO4.GetAllCement();
 
             //Sets value to element textblock and changes background color
@@ -109,27 +109,64 @@ namespace AggressivenessOfWaterAndGround
             }
         }
 
-        //Returns set, which contains elements of view, which are displaying the power aggressiveness of SO4
-        private TextBlock[] GetAllElementsWhichDisplayingAgrOfSO4()
+        /// <summary>
+        /// Returns set, which contains elements of view, which are displaying the power aggressiveness of SO4
+        /// </summary>
+        /// <param name="whichElementsToReturn">
+        /// Enter element of view: SO4 or СL
+        /// </param>
+        private TextBlock[] GetAllElementsWhichDisplayingAgr(string whichElementsToReturn)
         {
-            TextBlock[] elements = {
-                                    WaterSO4_IW4, WaterSO4_IW6, WaterSO4_IW8, WaterSO4_IW10_W14, WaterSO4_IW16_W20,
-                                    WaterSO4_IIW4, WaterSO4_IIW6, WaterSO4_IIW8, WaterSO4_IIW10_W14, WaterSO4_IIW16_W20,
-                                    WaterSO4_IIIW4, WaterSO4_IIIW6, WaterSO4_IIIW8, WaterSO4_IIIW10_W14, WaterSO4_IIIW16_W20,
-                                   };
-            return elements;
-
+            if (whichElementsToReturn == "SO4")
+            {
+                TextBlock[] elements = {
+                                        WaterSO4_IW4, WaterSO4_IW6, WaterSO4_IW8, WaterSO4_IW10_W14, WaterSO4_IW16_W20,
+                                        WaterSO4_IIW4, WaterSO4_IIW6, WaterSO4_IIW8, WaterSO4_IIW10_W14, WaterSO4_IIW16_W20,
+                                        WaterSO4_IIIW4, WaterSO4_IIIW6, WaterSO4_IIIW8, WaterSO4_IIIW10_W14, WaterSO4_IIIW16_W20,
+                                       };
+                return elements;
+            }
+            else if (whichElementsToReturn == "Cl")
+            {
+                TextBlock[] elements = {
+                                        WaterCL_20_W6_W8, WaterCL_20_W10_W14, WaterCL_20_W16_W20,
+                                        WaterCL_30_W6_W8, WaterCL_30_W10_W14, WaterCL_30_W16_W20,
+                                        WaterCL_50_W6_W8, WaterCL_50_W10_W14, WaterCL_50_W16_W20
+                                       };
+                return elements;
+            }
+            else
+                return new TextBlock[0];
         }
 
-        //Returns set, which contains borders of elements of view, which are displaying the power aggressiveness of SO4
-        private Border[] GetAllBorderOfElementsWhichDisplayingAgrOfSO4()
+        /// <summary>
+        /// Returns set, which contains borders of elements of view, which are displaying the power aggressiveness of SO4
+        /// </summary>
+        /// <param name="whichElementBordersToReturn">
+        /// Enter element of view: SO4 or СL
+        /// </param>
+        private Border[] GetAllBorderOfElementsWhichDisplayingAgr(string whichElementBordersToReturn)
         {
-            Border[] borderElements = {
-                                       WaterSO4_Border_IW4, WaterSO4_Border_IW6, WaterSO4_Border_IW8, WaterSO4_Border_IW10_W14, WaterSO4_Border_IW16_W20,
-                                       WaterSO4_Border_IIW4, WaterSO4_Border_IIW6, WaterSO4_Border_IIW8, WaterSO4_Border_IIW10_W14, WaterSO4_Border_IIW16_W20,
-                                       WaterSO4_Border_IIIW4, WaterSO4_Border_IIIW6, WaterSO4_Border_IIIW8, WaterSO4_Border_IIIW10_W14, WaterSO4_Border_IIIW16_W20,
-                                      };
-            return borderElements;
+            if (whichElementBordersToReturn == "SO4")
+            {
+                Border[] borderElements = {
+                                           WaterSO4_Border_IW4, WaterSO4_Border_IW6, WaterSO4_Border_IW8, WaterSO4_Border_IW10_W14, WaterSO4_Border_IW16_W20,
+                                           WaterSO4_Border_IIW4, WaterSO4_Border_IIW6, WaterSO4_Border_IIW8, WaterSO4_Border_IIW10_W14, WaterSO4_Border_IIW16_W20,
+                                           WaterSO4_Border_IIIW4, WaterSO4_Border_IIIW6, WaterSO4_Border_IIIW8, WaterSO4_Border_IIIW10_W14, WaterSO4_Border_IIIW16_W20,
+                                          };
+                return borderElements;
+            }
+            else if (whichElementBordersToReturn == "Cl")
+            {
+                Border[] borderElements = {
+                                           WaterCL_Border_20_W6_W8, WaterCL_Border_20_W10_W14, WaterCL_Border_20_W16_W20,
+                                           WaterCL_Border_30_W6_W8, WaterCL_Border_30_W10_W14, WaterCL_Border_30_W16_W20,
+                                           WaterCL_Border_50_W6_W8, WaterCL_Border_50_W10_W14, WaterCL_Border_50_W16_W20
+                                          };
+                return borderElements;
+            }
+            else
+                return new Border[0];
         }
 
         //Selects all text in textBox when it got focus

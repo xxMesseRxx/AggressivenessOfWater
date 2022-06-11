@@ -9,11 +9,11 @@ namespace AggressivenessOfWaterAndGround.WaterData
     internal static class AggressivenessDataOfSO4
     {
         public static uint AmountSO4 {private get; set; }
-        private static double amountHCO3;
+        private static double s_amountHCO3;
         public static double AmountHCO3
         {
-            private get { return amountHCO3; }
-            set { amountHCO3 = value < 0 ? 0 : value; }
+            private get { return s_amountHCO3; }
+            set { s_amountHCO3 = value < 0 ? 0 : value; }
         }
         
         const string NonAggres = "Неагрессивная";
