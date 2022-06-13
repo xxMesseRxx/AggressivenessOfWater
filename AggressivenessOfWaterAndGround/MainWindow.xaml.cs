@@ -205,6 +205,7 @@ namespace AggressivenessOfWaterAndGround
             {
                 TextCoefFiltratMoreThan01.TextDecorations = null;
                 WaterData.AggressivenessDataOfCl.CoefFiltratMoreThan01 = true;
+                WaterAmountOfCl_TextChanged(Water_AmountOfCl, null);
             }
             if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
             {
@@ -218,13 +219,13 @@ namespace AggressivenessOfWaterAndGround
             {
                 TextCoefFiltratMoreThan01.TextDecorations = TextDecorations.Strikethrough;
                 WaterData.AggressivenessDataOfCl.CoefFiltratMoreThan01 = false;
+                WaterAmountOfCl_TextChanged(Water_AmountOfCl, null);
             }
             if (((RadioButton)sender).Name == "CoefFiltratLessThan01")
             {
                 TextCoefFiltratLessThan01.TextDecorations = TextDecorations.Strikethrough;
             }
         }
-
 
     }
 }
