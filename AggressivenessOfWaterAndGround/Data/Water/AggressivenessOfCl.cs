@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AggressivenessOfWaterAndGround.WaterData
+namespace AggressivenessOfWaterAndGround.WaterData.Water
 {
-    internal static class AggressivenessDataOfCl
+    internal static class AggressivenessOfCl
     {
         public static uint AmountCL { private get; set; }
         public static bool CoefFiltratMoreThan01 { private get; set; }

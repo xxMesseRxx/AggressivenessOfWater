@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AggressivenessOfWaterAndGround.WaterData
+namespace AggressivenessOfWaterAndGround.WaterData.Water
 {
-    internal static class AggressivenessDataOfSO4
+    internal static class AggressivenessOfSO4
     {
         public static uint AmountSO4 {private get; set; }
         private static double s_amountHCO3;
