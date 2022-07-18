@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace AggressivenessOfWaterAndGround.Model.Water
 {
-    internal static class AggressivenessOfSO4
+    internal class AggressivenessOfSO4 : INotifyPropertyChanged
     {
-        public static uint AmountSO4 {private get; set; }
-        private static double s_amountHCO3;
-        public static double AmountHCO3
+        public uint AmountSO4 {private get; set; }
+
+        private double amountHCO3;
+        public double AmountHCO3
         {
-            private get { return s_amountHCO3; }
-            set { s_amountHCO3 = value < 0 ? 0 : value; }
+            private get { return amountHCO3; }
+            set { amountHCO3 = value < 0 ? 0 : value; }
         }
         
-        const string NonAggres = "Неагрессивная";
-        const string MildlyAggres = "Слабоагрессивная";
-        const string MediumAggres = "Среднеагрессивная";
-        const string HighlyAggres = "Сильноагрессивная";
+
         const double IncreasingCoefToW6 = 1.3;
         const double IncreasingCoefToW8 = 1.7;
 
         // These properties are returning the power of aggressiveness
         // that depends from amount SO4 and HCO3
-        public static string CementIW4
+        public string CementIW4
         {
             get
             {
@@ -78,7 +77,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             } 
         }
-        public static string CementIW6
+        public string CementIW6
         {
             get
             {
@@ -131,7 +130,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIW8
+        public string CementIW8
         {
             get
             {
@@ -184,7 +183,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIW10_14
+        public string CementIW10_14
         {
             get
             {
@@ -201,7 +200,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return HighlyAggres;
             }
         }
-        public static string CementIW16_20
+        public string CementIW16_20
         {
             get
             {
@@ -218,7 +217,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return HighlyAggres;
             }
         }
-        public static string CementIIW4
+        public string CementIIW4
         {
             get
             {
@@ -271,7 +270,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIIW6
+        public string CementIIW6
         {
             get
             {
@@ -324,7 +323,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIIW8
+        public string CementIIW8
         {
             get
             {
@@ -377,7 +376,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIIW10_14
+        public string CementIIW10_14
         {
             get
             {
@@ -394,7 +393,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return HighlyAggres;
             }
         }
-        public static string CementIIW16_20
+        public string CementIIW16_20
         {
             get
             {
@@ -411,7 +410,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return HighlyAggres;
             }
         }
-        public static string CementIIIW4
+        public string CementIIIW4
         {
             get
             {
@@ -464,7 +463,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIIIW6
+        public string CementIIIW6
         {
             get
             {
@@ -517,7 +516,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIIIW8
+        public string CementIIIW8
         {
             get
             {
@@ -570,7 +569,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return "Введите значение HCO3";
             }
         }
-        public static string CementIIIW10_14
+        public string CementIIIW10_14
         {
             get
             {
@@ -587,7 +586,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                     return HighlyAggres;
             }
         }
-        public static string CementIIIW16_20
+        public string CementIIIW16_20
         {
             get
             {
@@ -605,14 +604,6 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             }
         }
 
-        public static string[] GetAllCement()
-        {
-            string[] Set = { 
-                             CementIW4, CementIW6, CementIW8, CementIW10_14, CementIW16_20,
-                             CementIIW4, CementIIW6, CementIIW8, CementIIW10_14, CementIIW16_20,
-                             CementIIIW4, CementIIIW6, CementIIIW8, CementIIIW10_14, CementIIIW16_20
-                           };
-            return Set;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

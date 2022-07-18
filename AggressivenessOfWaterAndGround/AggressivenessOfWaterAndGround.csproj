@@ -91,6 +91,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\DegreeOfAggres.cs" />
     <Compile Include="Model\Water\AggressivenessOfCl.cs" />
     <Compile Include="Model\Water\AggressivenessOfSO4.cs" />
     <Compile Include="MainWindow.xaml.cs">
