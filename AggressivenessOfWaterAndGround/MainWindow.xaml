@@ -108,22 +108,10 @@
                         </StackPanel>
                         
                         <!--second column-->
-                        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" KeyDown="TextBox_PreviewKeyDown">
-                            <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     PreviewTextInput="TextBox_PreviewTextInput"
-                                     PreviewKeyDown="TextBox_PreviewKeyDown"
-                                     TextChanged="WaterAmountOfSO4orHCO3_TextChanged" 
-                                     GotFocus="SelectAllWhen_GotFocus"/>
-                            <TextBox x:Name="Water_AmountOfHCO3" Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     PreviewTextInput="TextBox_PreviewTextInput"
-                                     PreviewKeyDown="TextBox_PreviewKeyDown"
-                                     TextChanged="WaterAmountOfSO4orHCO3_TextChanged"
-                                     GotFocus="SelectAllWhen_GotFocus"/>
-                            <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     PreviewTextInput="TextBox_PreviewTextInput"
-                                     PreviewKeyDown="TextBox_PreviewKeyDown"
-                                     TextChanged="WaterAmountOfCl_TextChanged"
-                                     GotFocus="SelectAllWhen_GotFocus"/>
+                        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2"/>
+                            <TextBox x:Name="Water_AmountOfHCO3" Width="100" Margin="0,3" Padding="0,0,0,2"/>
+                            <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"/>
                         </StackPanel>
                         
                         <!--thrid column-->
@@ -185,12 +173,12 @@
                                 <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
                                     <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
-                                                 Padding="0,0,0,-2" Focusable="False" Unchecked="UnChecked_СrossOut_Text" Checked="IsChecked_Strikethrough_Clear">
+                                                 Padding="0,0,0,-2" Focusable="False">
                                         <TextBlock x:Name="TextCoefFiltratMoreThan01" Text="0,1 м/сут и более"/>
                                     </RadioButton>
                                     <Run Text="/"/>
                                     <RadioButton x:Name="CoefFiltratLessThan01" GroupName="filtration_coefficients"
-                                                 Padding="0,0,0,-2" Focusable="False" Unchecked="UnChecked_СrossOut_Text" Checked="IsChecked_Strikethrough_Clear">
+                                                 Padding="0,0,0,-2" Focusable="False">
                                         <TextBlock x:Name="TextCoefFiltratLessThan01" Text="менее 0,1 м/сут" TextDecorations="Strikethrough"/>
                                     </RadioButton>
                                 </TextBlock>

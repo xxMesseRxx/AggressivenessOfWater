@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AggressivenessOfWaterAndGround.WaterData.Water
+namespace AggressivenessOfWaterAndGround.Model.Water
 {
     internal static class AggressivenessOfCl
     {
