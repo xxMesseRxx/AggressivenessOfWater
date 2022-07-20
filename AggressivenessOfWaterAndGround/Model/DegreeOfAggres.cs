@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AggressivenessOfWaterAndGround.Model
 {
-    internal enum DegreeOfAggres
+    static internal class DegreeOfAggres
     {
-        NonAgres,
-        MildlyAggres,
-        MediumAggres,
-        HighlyAggres
+        internal const string NonAggres = "Неагрессивная";
+        internal const string MildlyAggres = "Слабоагрессивная";
+        internal const string MediumAggres = "Среднеагрессивная";
+        internal const string HighlyAggres = "Сильноагрессивная";
     }
 }

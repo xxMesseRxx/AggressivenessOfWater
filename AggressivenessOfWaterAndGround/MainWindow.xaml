@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AggressivenessOfWaterAndGround"
         mc:Ignorable="d"
-        Title="Агрессивность воды и грунтов" Height="550" Width="1100" MinWidth="850" Loaded="Window_Loaded">
+        Title="Агрессивность воды и грунтов" Height="550" Width="1100" MinWidth="850">
 
     <Window.Resources>
         <!--Set of styles for Run in TextBlock, to set different font styles in one TextBlock-->
@@ -109,9 +109,11 @@
                         
                         <!--second column-->
                         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
-                            <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2"/>
+                            <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2" 
+                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBox x:Name="Water_AmountOfHCO3" Width="100" Margin="0,3" Padding="0,0,0,2"/>
-                            <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"/>
+                            <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2" 
+                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         
                         <!--thrid column-->
@@ -300,7 +302,7 @@
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IW10_W14" Grid.Row="1" Grid.Column="4">
-                                <TextBlock x:Name="WaterSO4_IW10_W14" Text="Неагрессивная"
+                                <TextBlock x:Name="WaterSO4_IW10_W14" Text="{Binding Path=AggressOfSO4.CementIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border x:Name="WaterSO4_Border_IW16_W20" Grid.Row="1" Grid.Column="5">

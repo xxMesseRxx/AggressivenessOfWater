@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AggressivenessOfWaterAndGround.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,9 @@ namespace AggressivenessOfWaterAndGround
     {
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+
+            DataContext = new MainViewModel();
         }
     }
 }
