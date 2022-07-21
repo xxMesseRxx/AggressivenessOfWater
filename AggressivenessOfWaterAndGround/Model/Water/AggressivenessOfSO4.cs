@@ -20,19 +20,24 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _amountSO4 = value;
                 OnPropertyChanged("AmountSO4");
-                OnPropertyChanged("CementIW10_14");
+                AllCementPropertyChanged();
             }
         }
         public double AmountHCO3
         {
-            private get { return _amountHCO3; }
-            set { _amountHCO3 = value < 0 ? 0 : value; }
+            get { return _amountHCO3; }
+            set 
+            { 
+                _amountHCO3 = value < 0 ? 0 : value;
+                OnPropertyChanged("AmountHCO3");
+                AllCementPropertyChanged();
+            }
         }
 
         const double IncreasingCoefToW6 = 1.3;
         const double IncreasingCoefToW8 = 1.7;
         
-        // These properties are returning the power of aggressiveness
+        // These properties are returning the power of aggressiveness for different cement
         // that depends from amount SO4 and HCO3
         public string CementIW4
         {
@@ -619,6 +624,25 @@ namespace AggressivenessOfWaterAndGround.Model.Water
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private void AllCementPropertyChanged()
+        {
+            OnPropertyChanged("CementIW4");
+            OnPropertyChanged("CementIW6");
+            OnPropertyChanged("CementIW8");
+            OnPropertyChanged("CementIW10_14");
+            OnPropertyChanged("CementIW16_20");
+            OnPropertyChanged("CementIIW4");
+            OnPropertyChanged("CementIIW6");
+            OnPropertyChanged("CementIIW8");
+            OnPropertyChanged("CementIIW10_14");
+            OnPropertyChanged("CementIIW16_20");
+            OnPropertyChanged("CementIIIW4");
+            OnPropertyChanged("CementIIIW6");
+            OnPropertyChanged("CementIIIW8");
+            OnPropertyChanged("CementIIIW10_14");
+            OnPropertyChanged("CementIIIW16_20");
         }
     }
 }
