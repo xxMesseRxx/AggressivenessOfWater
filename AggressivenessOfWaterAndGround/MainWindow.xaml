@@ -110,9 +110,13 @@
                         <!--second column-->
                         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2" 
-                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}"
+                                     PreviewTextInput="CheckInt_PreviewTextInput" 
+                                     PreviewKeyDown="TextBox_PreviewKeyDown"/>
                             <TextBox x:Name="Water_AmountOfHCO3" Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     Text="{Binding Path=AggressOfSO4.AmountHCO3, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*.*}}"/>
+                                     Text="{Binding Path=AggressOfSO4.AmountHCO3, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*.*}}" 
+                                     PreviewTextInput="CheckDouble_PreviewTextInput"
+                                     PreviewKeyDown="TextBox_PreviewKeyDown"/>
                             <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"/>
                         </StackPanel>
                         
