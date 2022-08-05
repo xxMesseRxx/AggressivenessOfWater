@@ -110,17 +110,17 @@
                         <!--second column-->
                         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBox x:Name="Water_AmountOfSO4"  Width="100" Margin="0,3" Padding="0,0,0,2" 
-                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}"
                                      PreviewTextInput="CheckInt_PreviewTextInput" 
                                      PreviewKeyDown="TextBox_PreviewKeyDown" 
                                      GotFocus="SelectAllText_GotFocus"/>
                             <TextBox x:Name="Water_AmountOfHCO3" Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     Text="{Binding Path=AggressOfSO4.AmountHCO3, UpdateSourceTrigger=PropertyChanged, StringFormat={}{}}" 
+                                     Text="{Binding Path=AggressOfSO4.AmountHCO3, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}" 
                                      PreviewTextInput="CheckDouble_PreviewTextInput"
                                      PreviewKeyDown="TextBox_PreviewKeyDown"
                                      GotFocus="SelectAllText_GotFocus"/>
                             <TextBox x:Name="Water_AmountOfCl" Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     Text="{Binding Path=AggressOfCl.AmountCl, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding Path=AggressOfCl.AmountCl, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}"
                                      PreviewTextInput="CheckInt_PreviewTextInput"
                                      PreviewKeyDown="TextBox_PreviewKeyDown"
                                      GotFocus="SelectAllText_GotFocus"/>
@@ -185,7 +185,8 @@
                                 <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
                                     <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
                                     <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
-                                                 Padding="0,0,0,-2" Focusable="False">
+                                                 Padding="0,0,0,-2" Focusable="False"
+                                                 IsChecked="{Binding AggressOfCl.CoefFiltratMoreThan01}">
                                         <TextBlock x:Name="TextCoefFiltratMoreThan01" Text="0,1 м/сут и более"/>
                                     </RadioButton>
                                     <Run Text="/"/>
