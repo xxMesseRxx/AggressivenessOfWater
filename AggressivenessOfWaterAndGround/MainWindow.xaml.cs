@@ -39,7 +39,7 @@ namespace AggressivenessOfWaterAndGround
             }
         }
 
-        //Checks that the user enters an double in the textbox, so user can't even input incorrect char
+        //Checks that the user enters an double in the textbox, so user can't input incorrect char
         private void CheckDouble_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsDigit(e.Text, 0))
@@ -58,27 +58,27 @@ namespace AggressivenessOfWaterAndGround
         //Checks so that user don't input "space" and transmits focus to next element by "Enter"
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space)
+            switch (e.Key)
             {
-                e.Handled = true;
-            }
-
-            if (e.Key == Key.Enter)
-            {
-                TraversalRequest tRequest = new TraversalRequest(FocusNavigationDirection.Next);
-                UIElement keyboardFocus = Keyboard.FocusedElement as UIElement;
-
-                if (keyboardFocus != null)
-                {
-                    keyboardFocus.MoveFocus(tRequest);
-                }
-
-                e.Handled = true;
+                case Key.Space:
+                    e.Handled = true;
+                    break;
+                case Key.Enter:
+                    TraversalRequest tRequest = new TraversalRequest(FocusNavigationDirection.Next);
+                    UIElement keyboardFocus = Keyboard.FocusedElement as UIElement;
+                    if (keyboardFocus != null)
+                    {
+                        keyboardFocus.MoveFocus(tRequest);
+                    }
+                    e.Handled = true;
+                    break;
+                default:
+                    break;
             }
         }
 
         //Selects all text in textBox when it got focus
-        private void SelectAllWhen_GotFocus(object sender, RoutedEventArgs e)
+        private void SelectAllText_GotFocus(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox)
             {
