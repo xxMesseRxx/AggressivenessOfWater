@@ -12,6 +12,7 @@ namespace AggressivenessOfWaterAndGround.ViewModel
     internal class MainViewModel : INotifyPropertyChanged
     {
         public AggressivenessOfSO4 AggressOfSO4 { get; private set; } = new AggressivenessOfSO4();
+        public AggressivenessOfCl AggressOfCl { get; private set; } = new AggressivenessOfCl();
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
