@@ -33,7 +33,7 @@
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
 
-        <!--Style for column headers and row headers in custom table, which was made of TextBlocks-->
+        <!--Style for column headers and row headers in custom table, which was made by TextBlocks-->
         <Style x:Key="TextBlockOfCustomTable" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
