@@ -40,6 +40,23 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="Введите значение HCO3">
+                    <Setter Property="Background" Value="#c8c8c8"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Агрессивная">
+                    <Setter Property="Background" Value="#FFA8A8"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Слабоагрессивная">
+                    <Setter Property="Background" Value="#99C7B5"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Среднеагрессивная">
+                    <Setter Property="Background" Value="#F0F5AD"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Сильноагрессивная">
+                    <Setter Property="Background" Value="#FFA8A8"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style TargetType="Border">
@@ -225,39 +242,39 @@
                             <Border Grid.Row="5" Grid.Column="0">
                                 <TextBlock Text="50" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="1">
+                            <Border Grid.Row="3" Grid.Column="1" Background="{Binding ElementName=WaterCL_20_W6_W8, Path=Background}">
                                 <TextBlock Name="WaterCL_20_W6_W8" Text="{Binding Path=AggressOfCl.Cement_20_W6_W8}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="2">
+                            <Border Grid.Row="3" Grid.Column="2" Background="{Binding ElementName=WaterCL_20_W10_W14, Path=Background}">
                                 <TextBlock Name="WaterCL_20_W10_W14" Text="{Binding Path=AggressOfCl.Cement_20_W10_W14}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="3">
+                            <Border Grid.Row="3" Grid.Column="3" Background="{Binding ElementName=WaterCL_20_W16_W20, Path=Background}">
                                 <TextBlock Name="WaterCL_20_W16_W20" Text="{Binding Path=AggressOfCl.Cement_20_W16_W20}"  
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="1">
+                            <Border Grid.Row="4" Grid.Column="1" Background="{Binding ElementName=WaterCL_30_W6_W8, Path=Background}">
                                 <TextBlock Name="WaterCL_30_W6_W8" Text="{Binding Path=AggressOfCl.Cement_30_W6_W8}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="2">
+                            <Border Grid.Row="4" Grid.Column="2" Background="{Binding ElementName=WaterCL_30_W10_W14, Path=Background}">
                                 <TextBlock Name="WaterCL_30_W10_W14" Text="{Binding Path=AggressOfCl.Cement_30_W10_W14}"  
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="3">
+                            <Border Grid.Row="4" Grid.Column="3" Background="{Binding ElementName=WaterCL_30_W16_W20, Path=Background}">
                                 <TextBlock Name="WaterCL_30_W16_W20" Text="{Binding Path=AggressOfCl.Cement_30_W16_W20}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="1">
+                            <Border Grid.Row="5" Grid.Column="1" Background="{Binding ElementName=WaterCL_50_W6_W8, Path=Background}">
                                 <TextBlock Name="WaterCL_50_W6_W8" Text="{Binding Path=AggressOfCl.Cement_50_W6_W8}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="2">
+                            <Border Grid.Row="5" Grid.Column="2" Background="{Binding ElementName=WaterCL_50_W10_W14, Path=Background}">
                                 <TextBlock Name="WaterCL_50_W10_W14" Text="{Binding Path=AggressOfCl.Cement_50_W10_W14}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="3">
+                            <Border Grid.Row="5" Grid.Column="3" Background="{Binding ElementName=WaterCL_50_W16_W20, Path=Background}">
                                 <TextBlock Name="WaterCL_50_W16_W20" Text="{Binding Path=AggressOfCl.Cement_50_W16_W20}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
@@ -329,63 +346,63 @@
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
 
-                            <Border Grid.Row="1" Grid.Column="1">
+                            <Border Grid.Row="1" Grid.Column="1" Background="{Binding ElementName=WaterSO4_IW4, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IW4" Text="{Binding Path=AggressOfSO4.CementIW4, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="2">
+                            <Border Grid.Row="1" Grid.Column="2" Background="{Binding ElementName=WaterSO4_IW6, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IW6" Text="{Binding Path=AggressOfSO4.CementIW6, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="3">
+                            <Border Grid.Row="1" Grid.Column="3" Background="{Binding ElementName=WaterSO4_IW8, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IW8" Text="{Binding Path=AggressOfSO4.CementIW8, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="4">
+                            <Border Grid.Row="1" Grid.Column="4" Background="{Binding ElementName=WaterSO4_IW10_W14, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IW10_W14" Text="{Binding Path=AggressOfSO4.CementIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="5">
+                            <Border Grid.Row="1" Grid.Column="5" Background="{Binding ElementName=WaterSO4_IW16_W20, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IW16_W20" Text="{Binding Path=AggressOfSO4.CementIW16_20, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="1">
+                            <Border Grid.Row="2" Grid.Column="1" Background="{Binding ElementName=WaterSO4_IIW4, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIW4" Text="{Binding Path=AggressOfSO4.CementIIW4, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="2">
+                            <Border Grid.Row="2" Grid.Column="2" Background="{Binding ElementName=WaterSO4_IIW6, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIW6" Text="{Binding Path=AggressOfSO4.CementIIW6, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="3">
+                            <Border Grid.Row="2" Grid.Column="3" Background="{Binding ElementName=WaterSO4_IIW8, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIW8" Text="{Binding Path=AggressOfSO4.CementIIW8, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="4">
+                            <Border Grid.Row="2" Grid.Column="4" Background="{Binding ElementName=WaterSO4_IIW10_W14, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIW10_W14" Text="{Binding Path=AggressOfSO4.CementIIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="5">
+                            <Border Grid.Row="2" Grid.Column="5" Background="{Binding ElementName=WaterSO4_IIW16_W20, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIW16_W20" Text="{Binding Path=AggressOfSO4.CementIIW16_20, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="1">
+                            <Border Grid.Row="3" Grid.Column="1" Background="{Binding ElementName=WaterSO4_IIIW4, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIIW4" Text="{Binding Path=AggressOfSO4.CementIIIW4, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="2">
+                            <Border Grid.Row="3" Grid.Column="2" Background="{Binding ElementName=WaterSO4_IIIW6, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIIW6" Text="{Binding Path=AggressOfSO4.CementIIIW6, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="3">
+                            <Border Grid.Row="3" Grid.Column="3" Background="{Binding ElementName=WaterSO4_IIIW8, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIIW8" Text="{Binding Path=AggressOfSO4.CementIIIW8, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="4">
+                            <Border Grid.Row="3" Grid.Column="4" Background="{Binding ElementName=WaterSO4_IIIW10_W14, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIIW10_W14" Text="{Binding Path=AggressOfSO4.CementIIIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="5">
+                            <Border Grid.Row="3" Grid.Column="5" Background="{Binding ElementName=WaterSO4_IIIW16_W20, Path=Background}">
                                 <TextBlock x:Name="WaterSO4_IIIW16_W20" Text="{Binding Path=AggressOfSO4.CementIIIW16_20, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
