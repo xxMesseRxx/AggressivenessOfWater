@@ -11,7 +11,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
     internal class AggressivenessOfCl : INotifyPropertyChanged
     {
         private uint _amountCl;
-        private bool _coefFiltratMoreThan01;
+        private bool _coefFiltratMoreThan01 = true;
 
         public uint AmountCl
         {

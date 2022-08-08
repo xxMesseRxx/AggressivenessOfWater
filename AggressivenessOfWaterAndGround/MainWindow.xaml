@@ -187,12 +187,32 @@
                                     <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
                                                  Padding="0,0,0,-2" Focusable="False"
                                                  IsChecked="{Binding AggressOfCl.CoefFiltratMoreThan01}">
-                                        <TextBlock x:Name="TextCoefFiltratMoreThan01" Text="0,1 м/сут и более"/>
+                                        <TextBlock Text="0,1 м/сут и более">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CoefFiltratMoreThan01, Path=IsChecked}" Value="False">
+                                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
                                     </RadioButton>
                                     <Run Text="/"/>
                                     <RadioButton x:Name="CoefFiltratLessThan01" GroupName="filtration_coefficients"
                                                  Padding="0,0,0,-2" Focusable="False">
-                                        <TextBlock x:Name="TextCoefFiltratLessThan01" Text="менее 0,1 м/сут" TextDecorations="Strikethrough"/>
+                                        <TextBlock Text="менее 0,1 м/сут">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CoefFiltratLessThan01, Path=IsChecked}" Value="False">
+                                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
                                     </RadioButton>
                                 </TextBlock>
                             </Border>
