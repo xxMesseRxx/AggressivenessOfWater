@@ -76,7 +76,12 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Вода" Focusable="False">
+            <TabItem Header="Пробы воды" IsTabStop="False">
+                
+            </TabItem>
+
+
+            <TabItem Header="Агрессивность воды" IsTabStop="False">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
                     <Grid>
                         <Grid.ColumnDefinitions>
