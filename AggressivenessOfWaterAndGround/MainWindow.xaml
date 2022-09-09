@@ -77,7 +77,13 @@
     <Grid>
         <TabControl>
             <TabItem Header="Пробы воды" IsTabStop="False">
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                </Grid>
             </TabItem>
 
 
