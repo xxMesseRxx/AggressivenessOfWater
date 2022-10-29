@@ -33,7 +33,7 @@
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
 
-        <!--Style for column headers and row headers in custom table, which was made by TextBlocks-->
+        <!--Style for cells in custom table, which was made by TextBlocks-->
         <Style x:Key="TextBlockOfCustomTable" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -73,16 +73,231 @@
             <Setter Property="MinHeight" Value="30"/>
         </Style>
 
+        <!--Style for DataGrid-->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderHardness" TargetType="DataGridColumnHeader">
+            <Setter Property="SeparatorBrush" Value="Transparent"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DataGridCellsAlignment"
+               TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Пробы воды" IsTabStop="False">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"/>
                         <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="0.1*"/>
                     </Grid.RowDefinitions>
+
+                    <!--Elements of the second row-->
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False" 
+                              ItemsSource="{Binding WaterSamples}" ColumnWidth="*" 
+                              CellStyle="{StaticResource DataGridCellsAlignment}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№ Скв" Binding="{Binding BoreholeNumber}"/>
+                            <DataGridTextColumn Header="Глуб." Binding="{Binding SamplingDepth}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="мг/л" IsEnabled="False"/>
+                                            <TextBox Text="мг-экв" IsEnabled="False"/>
+                                            <TextBox Text="%-экв" IsEnabled="False"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock>
+                                           <Run Text="Na" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="+" Style="{StaticResource SuperscriptRunText}"/><!--
+                                        --><Run Text="+K" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="+" Style="{StaticResource SuperscriptRunText}"/>
+                                    </TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding ConcentrationOfNaAndKInMilligramsPerLiter, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <TextBox Text="{Binding ConcentrationOfNaAndKInMilligramsEquivalents, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock>
+                                           <Run Text="Mg" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="2+" Style="{StaticResource SuperscriptRunText}"/>
+                                    </TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding ConcentrationOfMgInMilligramsPerLiter, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <TextBox Text="{Binding ConcentrationOfMgInMilligramsEquivalents, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock><Run Text="Ca" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="2+" Style="{StaticResource SuperscriptRunText}"/></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding ConcentrationOfCaInMilligramsPerLiter}"/>
+                                            <TextBox Text="{Binding ConcentrationOfCaInMilligramsEquivalents}"/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock><Run Text="Cl" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding ConcentrationOfClInMilligramsPerLiter}"/>
+                                            <TextBox Text="{Binding ConcentrationOfClInMilligramsEquivalents}"/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock><Run Text="SO" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="4" Style="{StaticResource SubscriptRunText}"/><!--
+                                        --><Run Text="2-" Style="{StaticResource SuperscriptRunText}"/></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding ConcentrationOfSoInMilligramsPerLiter}"/>
+                                            <TextBox Text="{Binding ConcentrationOfSoInMilligramsEquivalents}"/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock><Run Text="HCO" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
+                                        --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding ConcentrationOfHcoInMilligramsPerLiter}"/>
+                                            <TextBox Text="{Binding ConcentrationOfHcoInMilligramsEquivalents}"/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock><Run Text="CO" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
+                                        --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox/>
+                                            <TextBox/>
+                                            <TextBox/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="pH" Binding="{Binding PHindicator}"/>
+                            <DataGridTemplateColumn Header=" Сухой&#xA;остаток" Width="1.1*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox Text="{Binding DryResidueInMilligramsPerLiter}"/>
+                                            <TextBox IsEnabled="False"/>
+                                            <TextBox IsEnabled="False"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="общ." HeaderStyle="{StaticResource DataGridColumnHeaderHardness}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox IsEnabled="False"/>
+                                            <TextBox Text="{Binding GeneralWaterHardnessInMilligramsEquivalents}"/>
+                                            <TextBox IsEnabled="False"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Жесткость&#xA;    пост." Width="1.4*" HeaderStyle="{StaticResource DataGridColumnHeaderHardness}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox IsEnabled="False"/>
+                                            <TextBox Text="{Binding PermanentWaterHardnessInMilligramsEquivalents}"/>
+                                            <TextBox IsEnabled="False"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="карб." HeaderStyle="{StaticResource DataGridColumnHeaderHardness}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBox IsEnabled="False"/>
+                                            <TextBox Text="{Binding CarbonateWaterHardnessInMilligramsEquivalents}"/>
+                                            <TextBox IsEnabled="False"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock><Run Text="NO" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
+                                        --><Run Text="&#xA;NO" Style="{StaticResource StandardRunText}"/><!--
+                                        --><Run Text="2" Style="{StaticResource SubscriptRunText}"/></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn Width="0.3*" Binding="{Binding AllowTheUserToEnterDataForMilligramsEquivalents, 
+                                                                                   UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
 
@@ -107,53 +322,44 @@
                         <!--first column-->
                         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <!--Lables that use differ styles for text-->
-                            <TextBlock Margin="0,4">
-                                <Run Text="Введите значение SO" Style="{StaticResource StandardRunText}"/><!--
+                            <TextBlock Margin="0,4"><Run Text="Введите значение SO" Style="{StaticResource StandardRunText}"/><!--
                                 --><Run Text="4" Style="{StaticResource SubscriptRunText}"/><!--
-                                --><Run Text="2-" Style="{StaticResource SuperscriptRunText}"/>
-                                <Run Text="в мг/дм" Style="{StaticResource StandardRunText}"/><!--
+                                --><Run Text="2-" Style="{StaticResource SuperscriptRunText}"/><Run Text=" "/><Run Text="в мг/дм" Style="{StaticResource StandardRunText}"/><!--
                                 --><Run Text="3" Style="{StaticResource SuperscriptRunText}"/><!--
-                                --><Run Text=":" Style="{StaticResource StandardRunText}"/>
-                            </TextBlock>
+                                --><Run Text=":" Style="{StaticResource StandardRunText}"/></TextBlock>
 
-                            <TextBlock Margin="0,4">
-                                <Run Text="Введите значение HCO" Style="{StaticResource StandardRunText}"/><!--
+                            <TextBlock Margin="0,4"><Run Text="Введите значение HCO" Style="{StaticResource StandardRunText}"/><!--
                                 --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
-                                --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/>
-                                <Run Text="в мг-экв/дм" Style="{StaticResource StandardRunText}"/><!--
+                                --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/><Run Text=" "/><Run Text="в мг-экв/дм" Style="{StaticResource StandardRunText}"/><!--
                                 --><Run Text="3" Style="{StaticResource SuperscriptRunText}"/><!--
-                                --><Run Text=":" Style="{StaticResource StandardRunText}"/>
-                            </TextBlock>
+                                --><Run Text=":" Style="{StaticResource StandardRunText}"/></TextBlock>
 
-                            <TextBlock Margin="0,4">
-                                <Run Text="Введите значение Cl" Style="{StaticResource StandardRunText}"/><!--
-                                --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/>
-                                <Run Text="в мг/дм" Style="{StaticResource StandardRunText}"/><!--
+                            <TextBlock Margin="0,4"><Run Text="Введите значение Cl" Style="{StaticResource StandardRunText}"/><!--
+                                --><Run Text="-" Style="{StaticResource SuperscriptRunText}"/><Run Text=" "/><Run Text="в мг/дм" Style="{StaticResource StandardRunText}"/><!--
                                 --><Run Text="3" Style="{StaticResource SuperscriptRunText}"/><!--
-                                --><Run Text=":" Style="{StaticResource StandardRunText}"/>
-                            </TextBlock>
+                                --><Run Text=":" Style="{StaticResource StandardRunText}"/></TextBlock>
 
                         </StackPanel>
-                        
+
                         <!--second column-->
                         <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
                             <TextBox Width="100" Margin="0,3" Padding="0,0,0,2" 
-                                     Text="{Binding Path=AggressOfSO4.AmountSO4, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}"
+                                     Text="{Binding AggressOfSO4.AmountSO4, StringFormat=\{*\}, UpdateSourceTrigger=PropertyChanged}"
                                      PreviewTextInput="CheckInt_PreviewTextInput" 
                                      PreviewKeyDown="TextBox_PreviewKeyDown" 
                                      GotFocus="SelectAllText_GotFocus"/>
                             <TextBox Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     Text="{Binding Path=AggressOfSO4.AmountHCO3, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}" 
+                                     Text="{Binding AggressOfSO4.AmountHCO3, StringFormat=\{*\}, UpdateSourceTrigger=PropertyChanged}" 
                                      PreviewTextInput="CheckDouble_PreviewTextInput"
                                      PreviewKeyDown="TextBox_PreviewKeyDown"
                                      GotFocus="SelectAllText_GotFocus"/>
                             <TextBox Width="100" Margin="0,3" Padding="0,0,0,2"
-                                     Text="{Binding Path=AggressOfCl.AmountCl, UpdateSourceTrigger=PropertyChanged, StringFormat={}{*}}"
+                                     Text="{Binding AggressOfCl.AmountCl, StringFormat=\{*\}, UpdateSourceTrigger=PropertyChanged}"
                                      PreviewTextInput="CheckInt_PreviewTextInput"
                                      PreviewKeyDown="TextBox_PreviewKeyDown"
                                      GotFocus="SelectAllText_GotFocus"/>
                         </StackPanel>
-                        
+
                         <!--thrid column-->
                         <Grid Grid.Row="0" Grid.Column="3" Margin="5">
                             <Grid.ColumnDefinitions>
@@ -176,73 +382,64 @@
                                 <TextBlock Text="Толщина защитного слоя бетона, мм" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
-                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
-                                    <Run Text="Максимальная допустимая концентрация хлоридов в жидкой среде, мг/дм"/><!--
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}"><Run Text="Максимальная допустимая концентрация хлоридов в жидкой среде, мг/дм"/><!--
                                     --><Run Text="3" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=", для бетона с коэффициентом диффузии, см"/><!--
                                     --><Run Text="2" Style="{StaticResource SuperscriptRunText}"/><!--
-                                    --><Run Text="/с (маркам по водопроницаемости)"/>
-                                </TextBlock>
+                                    --><Run Text="/с (маркам по водопроницаемости)"/></TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="1">
-                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
-                                    <Run Text="Менее 5 * 10"/><!--
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}"><Run Text="Менее 5 * 10"/><!--
                                     --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=" до 1 * 10"/><!--
                                     --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
-                                    --><Run Text=" (W6 - W8)"/>
-                                </TextBlock>
+                                    --><Run Text=" (W6 - W8)"/></TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="2">
-                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
-                                    <Run Text="Менее 1 * 10"/><!--
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}"><Run Text="Менее 1 * 10"/><!--
                                     --><Run Text="-8" Style="{StaticResource SuperscriptRunText}"/><!--
                                     --><Run Text=" до 5 * 10"/><!--
                                     --><Run Text="-9" Style="{StaticResource SuperscriptRunText}"/><!--
-                                    --><Run Text=" (W10 - W14)"/>
-                                </TextBlock>
+                                    --><Run Text=" (W10 - W14)"/></TextBlock>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="3">
-                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
-                                    <Run Text="Менее 5 * 10"/><!--
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}"><Run Text="Менее 5 * 10"/><!--
                                     --><Run Text="-9" Style="{StaticResource SuperscriptRunText}"/><!--
-                                    --><Run Text=" &#x0a;(W16 - W20)"/>
-                                </TextBlock>
+                                    --><Run Text=" &#xA;(W16 - W20)"/></TextBlock>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
-                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
-                                    <Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/>
-                                    <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
-                                                 Padding="0,0,0,-2" Focusable="False"
-                                                 IsChecked="{Binding AggressOfCl.CoefFiltratMoreThan01}">
-                                        <TextBlock Text="0,1 м/сут и более">
-                                            <TextBlock.Style>
-                                                <Style>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding ElementName=CoefFiltratMoreThan01, Path=IsChecked}" Value="False">
-                                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </RadioButton>
-                                    <Run Text="/"/>
-                                    <RadioButton x:Name="CoefFiltratLessThan01" GroupName="filtration_coefficients"
-                                                 Padding="0,0,0,-2" Focusable="False">
-                                        <TextBlock Text="менее 0,1 м/сут">
-                                            <TextBlock.Style>
-                                                <Style>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding ElementName=CoefFiltratLessThan01, Path=IsChecked}" Value="False">
-                                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </RadioButton>
-                                </TextBlock>
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}"><Run Text="Зона переменного уровня воды и капиллярного подсоса в открытом водоеме или грунте с коэффициентом фильтрации:"/><Run Text=" "/><InlineUIContainer>
+                                        <RadioButton x:Name="CoefFiltratMoreThan01" GroupName="filtration_coefficients"
+                                            Padding="0,0,0,-2" Focusable="False"
+                                            IsChecked="{Binding AggressOfCl.CoefFiltratMoreThan01}">
+                                            <TextBlock Text="0,1 м/сут и более">
+                                                <TextBlock.Style>
+                                                    <Style>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsChecked, ElementName=CoefFiltratMoreThan01}" Value="False">
+                                                                <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </RadioButton>
+                                    </InlineUIContainer><Run Text=" "/><Run Text="/"/><Run Text=" "/><InlineUIContainer>
+                                        <RadioButton x:Name="CoefFiltratLessThan01" GroupName="filtration_coefficients"
+                                            Padding="0,0,0,-2" Focusable="False">
+                                            <TextBlock Text="менее 0,1 м/сут">
+                                                <TextBlock.Style>
+                                                    <Style>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsChecked, ElementName=CoefFiltratLessThan01}" Value="False">
+                                                                <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </RadioButton>
+                                    </InlineUIContainer></TextBlock>
                             </Border>
                             <Border Grid.Row="3" Grid.Column="0">
                                 <TextBlock Text="20" Style="{StaticResource TextBlockOfCustomTable}"/>
@@ -253,51 +450,49 @@
                             <Border Grid.Row="5" Grid.Column="0">
                                 <TextBlock Text="50" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="1" Background="{Binding ElementName=WaterCL_20_W6_W8, Path=Background}">
-                                <TextBlock Name="WaterCL_20_W6_W8" Text="{Binding Path=AggressOfCl.Cement_20_W6_W8}" 
+                            <Border Grid.Row="3" Grid.Column="1" Background="{Binding Background, ElementName=WaterCL_20_W6_W8}">
+                                <TextBlock x:Name="WaterCL_20_W6_W8" Text="{Binding AggressOfCl.Cement_20_W6_W8}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="2" Background="{Binding ElementName=WaterCL_20_W10_W14, Path=Background}">
-                                <TextBlock Name="WaterCL_20_W10_W14" Text="{Binding Path=AggressOfCl.Cement_20_W10_W14}" 
+                            <Border Grid.Row="3" Grid.Column="2" Background="{Binding Background, ElementName=WaterCL_20_W10_W14}">
+                                <TextBlock x:Name="WaterCL_20_W10_W14" Text="{Binding AggressOfCl.Cement_20_W10_W14}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="3" Background="{Binding ElementName=WaterCL_20_W16_W20, Path=Background}">
-                                <TextBlock Name="WaterCL_20_W16_W20" Text="{Binding Path=AggressOfCl.Cement_20_W16_W20}"  
+                            <Border Grid.Row="3" Grid.Column="3" Background="{Binding Background, ElementName=WaterCL_20_W16_W20}">
+                                <TextBlock x:Name="WaterCL_20_W16_W20" Text="{Binding AggressOfCl.Cement_20_W16_W20}"  
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="1" Background="{Binding ElementName=WaterCL_30_W6_W8, Path=Background}">
-                                <TextBlock Name="WaterCL_30_W6_W8" Text="{Binding Path=AggressOfCl.Cement_30_W6_W8}" 
+                            <Border Grid.Row="4" Grid.Column="1" Background="{Binding Background, ElementName=WaterCL_30_W6_W8}">
+                                <TextBlock x:Name="WaterCL_30_W6_W8" Text="{Binding AggressOfCl.Cement_30_W6_W8}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="2" Background="{Binding ElementName=WaterCL_30_W10_W14, Path=Background}">
-                                <TextBlock Name="WaterCL_30_W10_W14" Text="{Binding Path=AggressOfCl.Cement_30_W10_W14}"  
+                            <Border Grid.Row="4" Grid.Column="2" Background="{Binding Background, ElementName=WaterCL_30_W10_W14}">
+                                <TextBlock x:Name="WaterCL_30_W10_W14" Text="{Binding AggressOfCl.Cement_30_W10_W14}"  
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="4" Grid.Column="3" Background="{Binding ElementName=WaterCL_30_W16_W20, Path=Background}">
-                                <TextBlock Name="WaterCL_30_W16_W20" Text="{Binding Path=AggressOfCl.Cement_30_W16_W20}" 
+                            <Border Grid.Row="4" Grid.Column="3" Background="{Binding Background, ElementName=WaterCL_30_W16_W20}">
+                                <TextBlock x:Name="WaterCL_30_W16_W20" Text="{Binding AggressOfCl.Cement_30_W16_W20}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="1" Background="{Binding ElementName=WaterCL_50_W6_W8, Path=Background}">
-                                <TextBlock Name="WaterCL_50_W6_W8" Text="{Binding Path=AggressOfCl.Cement_50_W6_W8}" 
+                            <Border Grid.Row="5" Grid.Column="1" Background="{Binding Background, ElementName=WaterCL_50_W6_W8}">
+                                <TextBlock x:Name="WaterCL_50_W6_W8" Text="{Binding AggressOfCl.Cement_50_W6_W8}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="2" Background="{Binding ElementName=WaterCL_50_W10_W14, Path=Background}">
-                                <TextBlock Name="WaterCL_50_W10_W14" Text="{Binding Path=AggressOfCl.Cement_50_W10_W14}" 
+                            <Border Grid.Row="5" Grid.Column="2" Background="{Binding Background, ElementName=WaterCL_50_W10_W14}">
+                                <TextBlock x:Name="WaterCL_50_W10_W14" Text="{Binding AggressOfCl.Cement_50_W10_W14}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="5" Grid.Column="3" Background="{Binding ElementName=WaterCL_50_W16_W20, Path=Background}">
-                                <TextBlock Name="WaterCL_50_W16_W20" Text="{Binding Path=AggressOfCl.Cement_50_W16_W20}" 
+                            <Border Grid.Row="5" Grid.Column="3" Background="{Binding Background, ElementName=WaterCL_50_W16_W20}">
+                                <TextBlock x:Name="WaterCL_50_W16_W20" Text="{Binding AggressOfCl.Cement_50_W16_W20}" 
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                         </Grid>
 
                         <!--Elements of the second row-->
-                        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0">
-                                <Run Text="Показатель агрессивности грунтовых вод по содержанию сульфатов в пересчете на ионы SO" Style="{StaticResource StandardRunText}"/><!--
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"><Run Text="Показатель агрессивности грунтовых вод по содержанию сульфатов в пересчете на ионы SO" Style="{StaticResource StandardRunText}"/><!--
                                 --><Run Text="4" Style="{StaticResource SubscriptRunText}"/><!--
                                 --><Run Text="2-" Style="{StaticResource SuperscriptRunText}"/><!--
-                                --><Run Text=", мг/л" Style="{StaticResource StandardRunText}"/>
-                        </TextBlock>
+                                --><Run Text=", мг/л" Style="{StaticResource StandardRunText}"/></TextBlock>
 
                         <!--Elements of the third row-->
                         <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="10">
@@ -336,85 +531,83 @@
                                 <TextBlock Text="W16-W20" Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="0">
-                                <TextBlock Text="Портландцемент,&#10; не вошедший в группу II"
+                                <TextBlock Text="Портландцемент,&#xA; не вошедший в группу II"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                             <Border Grid.Row="2" Grid.Column="0">
-                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}">
-                                    <Run Text="Портландцемент с содержанием в&#10; клинкере C"/><!--
+                                <TextBlock Style="{StaticResource TextBlockOfCustomTable}"><Run Text="Портландцемент с содержанием в&#xA; клинкере C"/><!--
                                     --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
                                     --><Run Text="S не более 65%, С"/><!--
                                     --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
-                                    --><Run Text="A&#10; не более 7%, C"/><!--
+                                    --><Run Text="A&#xA; не более 7%, C"/><!--
                                     --><Run Text="3" Style="{StaticResource SubscriptRunText}"/><!--
                                     --><Run Text="A+C"/><!--
                                     --><Run Text="4" Style="{StaticResource SubscriptRunText}"/><!--
-                                    --><Run Text="AF не более&#10; 22% и шлакопортландцемент"/>
-                                </TextBlock>
+                                    --><Run Text="AF не более&#xA; 22% и шлакопортландцемент"/></TextBlock>
                             </Border>
                             <Border Grid.Row="3" Grid.Column="0">
                                 <TextBlock Text="Сульфатостойкие цементы"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
 
-                            <Border Grid.Row="1" Grid.Column="1" Background="{Binding ElementName=WaterSO4_IW4, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IW4" Text="{Binding Path=AggressOfSO4.CementIW4, Mode=OneWay}"
+                            <Border Grid.Row="1" Grid.Column="1" Background="{Binding Background, ElementName=WaterSO4_IW4}">
+                                <TextBlock x:Name="WaterSO4_IW4" Text="{Binding AggressOfSO4.CementIW4, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="2" Background="{Binding ElementName=WaterSO4_IW6, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IW6" Text="{Binding Path=AggressOfSO4.CementIW6, Mode=OneWay}"
+                            <Border Grid.Row="1" Grid.Column="2" Background="{Binding Background, ElementName=WaterSO4_IW6}">
+                                <TextBlock x:Name="WaterSO4_IW6" Text="{Binding AggressOfSO4.CementIW6, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="3" Background="{Binding ElementName=WaterSO4_IW8, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IW8" Text="{Binding Path=AggressOfSO4.CementIW8, Mode=OneWay}"
+                            <Border Grid.Row="1" Grid.Column="3" Background="{Binding Background, ElementName=WaterSO4_IW8}">
+                                <TextBlock x:Name="WaterSO4_IW8" Text="{Binding AggressOfSO4.CementIW8, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="4" Background="{Binding ElementName=WaterSO4_IW10_W14, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IW10_W14" Text="{Binding Path=AggressOfSO4.CementIW10_14, Mode=OneWay}"
+                            <Border Grid.Row="1" Grid.Column="4" Background="{Binding Background, ElementName=WaterSO4_IW10_W14}">
+                                <TextBlock x:Name="WaterSO4_IW10_W14" Text="{Binding AggressOfSO4.CementIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="1" Grid.Column="5" Background="{Binding ElementName=WaterSO4_IW16_W20, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IW16_W20" Text="{Binding Path=AggressOfSO4.CementIW16_20, Mode=OneWay}"
+                            <Border Grid.Row="1" Grid.Column="5" Background="{Binding Background, ElementName=WaterSO4_IW16_W20}">
+                                <TextBlock x:Name="WaterSO4_IW16_W20" Text="{Binding AggressOfSO4.CementIW16_20, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="1" Background="{Binding ElementName=WaterSO4_IIW4, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIW4" Text="{Binding Path=AggressOfSO4.CementIIW4, Mode=OneWay}"
+                            <Border Grid.Row="2" Grid.Column="1" Background="{Binding Background, ElementName=WaterSO4_IIW4}">
+                                <TextBlock x:Name="WaterSO4_IIW4" Text="{Binding AggressOfSO4.CementIIW4, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="2" Background="{Binding ElementName=WaterSO4_IIW6, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIW6" Text="{Binding Path=AggressOfSO4.CementIIW6, Mode=OneWay}"
+                            <Border Grid.Row="2" Grid.Column="2" Background="{Binding Background, ElementName=WaterSO4_IIW6}">
+                                <TextBlock x:Name="WaterSO4_IIW6" Text="{Binding AggressOfSO4.CementIIW6, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="3" Background="{Binding ElementName=WaterSO4_IIW8, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIW8" Text="{Binding Path=AggressOfSO4.CementIIW8, Mode=OneWay}"
+                            <Border Grid.Row="2" Grid.Column="3" Background="{Binding Background, ElementName=WaterSO4_IIW8}">
+                                <TextBlock x:Name="WaterSO4_IIW8" Text="{Binding AggressOfSO4.CementIIW8, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="4" Background="{Binding ElementName=WaterSO4_IIW10_W14, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIW10_W14" Text="{Binding Path=AggressOfSO4.CementIIW10_14, Mode=OneWay}"
+                            <Border Grid.Row="2" Grid.Column="4" Background="{Binding Background, ElementName=WaterSO4_IIW10_W14}">
+                                <TextBlock x:Name="WaterSO4_IIW10_W14" Text="{Binding AggressOfSO4.CementIIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="2" Grid.Column="5" Background="{Binding ElementName=WaterSO4_IIW16_W20, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIW16_W20" Text="{Binding Path=AggressOfSO4.CementIIW16_20, Mode=OneWay}"
+                            <Border Grid.Row="2" Grid.Column="5" Background="{Binding Background, ElementName=WaterSO4_IIW16_W20}">
+                                <TextBlock x:Name="WaterSO4_IIW16_W20" Text="{Binding AggressOfSO4.CementIIW16_20, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="1" Background="{Binding ElementName=WaterSO4_IIIW4, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIIW4" Text="{Binding Path=AggressOfSO4.CementIIIW4, Mode=OneWay}"
+                            <Border Grid.Row="3" Grid.Column="1" Background="{Binding Background, ElementName=WaterSO4_IIIW4}">
+                                <TextBlock x:Name="WaterSO4_IIIW4" Text="{Binding AggressOfSO4.CementIIIW4, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="2" Background="{Binding ElementName=WaterSO4_IIIW6, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIIW6" Text="{Binding Path=AggressOfSO4.CementIIIW6, Mode=OneWay}"
+                            <Border Grid.Row="3" Grid.Column="2" Background="{Binding Background, ElementName=WaterSO4_IIIW6}">
+                                <TextBlock x:Name="WaterSO4_IIIW6" Text="{Binding AggressOfSO4.CementIIIW6, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="3" Background="{Binding ElementName=WaterSO4_IIIW8, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIIW8" Text="{Binding Path=AggressOfSO4.CementIIIW8, Mode=OneWay}"
+                            <Border Grid.Row="3" Grid.Column="3" Background="{Binding Background, ElementName=WaterSO4_IIIW8}">
+                                <TextBlock x:Name="WaterSO4_IIIW8" Text="{Binding AggressOfSO4.CementIIIW8, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="4" Background="{Binding ElementName=WaterSO4_IIIW10_W14, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIIW10_W14" Text="{Binding Path=AggressOfSO4.CementIIIW10_14, Mode=OneWay}"
+                            <Border Grid.Row="3" Grid.Column="4" Background="{Binding Background, ElementName=WaterSO4_IIIW10_W14}">
+                                <TextBlock x:Name="WaterSO4_IIIW10_W14" Text="{Binding AggressOfSO4.CementIIIW10_14, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
-                            <Border Grid.Row="3" Grid.Column="5" Background="{Binding ElementName=WaterSO4_IIIW16_W20, Path=Background}">
-                                <TextBlock x:Name="WaterSO4_IIIW16_W20" Text="{Binding Path=AggressOfSO4.CementIIIW16_20, Mode=OneWay}"
+                            <Border Grid.Row="3" Grid.Column="5" Background="{Binding Background, ElementName=WaterSO4_IIIW16_W20}">
+                                <TextBlock x:Name="WaterSO4_IIIW16_W20" Text="{Binding AggressOfSO4.CementIIIW16_20, Mode=OneWay}"
                                            Style="{StaticResource TextBlockOfCustomTable}"/>
                             </Border>
                         </Grid>

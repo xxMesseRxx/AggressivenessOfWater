@@ -30,6 +30,7 @@ namespace AggressivenessOfWaterAndGround.Model.Water
         private double _permanentWaterHardnessInMilligramsEquivalents;
         private double _carbonateWaterHardnessInMilligramsEquivalents;
         private double _pHindicator;
+        private bool _allowTheUserToEnterDataForMilligramsEquivalents;
 
         public string BoreholeNumber
         {
@@ -51,11 +52,21 @@ namespace AggressivenessOfWaterAndGround.Model.Water
         }
         public uint ConcentrationOfNaAndKInMilligramsPerLiter
         {
-            get { return _concentrationOfNaAndKInMilligramsPerLiter; }
+            get 
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfNaAndKInMilligramsPerLiter;
+                }
+                return (uint)Math.Round(ConcentrationOfNaAndKInMilligramsEquivalents * 23, MidpointRounding.AwayFromZero); // 23 is empirical coefficient
+            }
             set
             {
-                _concentrationOfNaAndKInMilligramsPerLiter = value;
-                OnPropertyChanged("ConcentrationOfNaAndKInMilligramsPerLiter");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfNaAndKInMilligramsPerLiter = value;
+                    OnPropertyChanged("ConcentrationOfNaAndKInMilligramsPerLiter");
+                }
             }
         }
         public uint ConcentrationOfMgInMilligramsPerLiter
@@ -65,6 +76,11 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _concentrationOfMgInMilligramsPerLiter = value;
                 OnPropertyChanged("ConcentrationOfMgInMilligramsPerLiter");
+                if (!AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    OnPropertyChanged("ConcentrationOfMgInMilligramsEquivalents");
+                    NaAndKWereChanged();
+                }
             }
         }
         public uint ConcentrationOfCaInMilligramsPerLiter
@@ -74,6 +90,10 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _concentrationOfCaInMilligramsPerLiter = value;
                 OnPropertyChanged("ConcentrationOfCaInMilligramsPerLiter");
+                if (!AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    OnPropertyChanged("ConcentrationOfCaInMilligramsEquivalents");
+                }
             }
         }
         public uint ConcentrationOfClInMilligramsPerLiter
@@ -83,6 +103,10 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _concentrationOfClInMilligramsPerLiter = value;
                 OnPropertyChanged("ConcentrationOfClInMilligramsPerLiter");
+                if (!AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    OnPropertyChanged("ConcentrationOfClInMilligramsEquivalents");
+                }
             }
         }
         public uint ConcentrationOfSoInMilligramsPerLiter
@@ -92,6 +116,10 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _concentrationOfSoInMilligramsPerLiter = value;
                 OnPropertyChanged("ConcentrationOfSoInMilligramsPerLiter");
+                if (!AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    OnPropertyChanged("ConcentrationOfSoInMilligramsEquivalents");
+                }
             }
         }
         public uint ConcentrationOfHcoInMilligramsPerLiter
@@ -101,6 +129,10 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _concentrationOfHcoInMilligramsPerLiter = value;
                 OnPropertyChanged("ConcentrationOfHcoInMilligramsPerLiter");
+                if (!AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    OnPropertyChanged("ConcentrationOfHcoInMilligramsEquivalents");
+                }
             }
         }
         public uint ConcentrationOfNoInMilligramsPerLiter
@@ -110,6 +142,10 @@ namespace AggressivenessOfWaterAndGround.Model.Water
             {
                 _concentrationOfNoInMilligramsPerLiter = value;
                 OnPropertyChanged("ConcentrationOfNoInMilligramsPerLiter");
+                if (!AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    OnPropertyChanged("ConcentrationOfNoInMilligramsEquivalents");
+                }
             }
         }
         public uint DryResidueInMilligramsPerLiter
@@ -123,83 +159,186 @@ namespace AggressivenessOfWaterAndGround.Model.Water
         }
         public double ConcentrationOfNaAndKInMilligramsEquivalents
         {
-            get { return _concentrationOfNaAndKInMilligramsEquivalents; }
+            get 
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfNaAndKInMilligramsEquivalents;
+                }
+                else if ((ConcentrationOfClInMilligramsEquivalents + ConcentrationOfSoInMilligramsEquivalents +
+                        ConcentrationOfHcoInMilligramsEquivalents) - (ConcentrationOfCaInMilligramsEquivalents +
+                        ConcentrationOfMgInMilligramsEquivalents) < 0)
+                {
+                    return 0;
+                }
+                return (ConcentrationOfClInMilligramsEquivalents + ConcentrationOfSoInMilligramsEquivalents +
+                        ConcentrationOfHcoInMilligramsEquivalents) - (ConcentrationOfCaInMilligramsEquivalents +
+                        ConcentrationOfMgInMilligramsEquivalents);
+            }
             set
             {
-                _concentrationOfNaAndKInMilligramsEquivalents = value;
-                OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfNaAndKInMilligramsEquivalents = value;
+                    OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+                }   
             }
         }
         public double ConcentrationOfMgInMilligramsEquivalents
         {
-            get { return _concentrationOfMgInMilligramsEquivalents; }
+            get
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfMgInMilligramsEquivalents;
+                }
+                return Math.Round(ConcentrationOfMgInMilligramsPerLiter / 12.1525, 2); // equivalent weight Mg=12.1525
+            }
             set
             {
-                _concentrationOfMgInMilligramsEquivalents = value;
-                OnPropertyChanged("ConcentrationOfMgInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfMgInMilligramsEquivalents = value;
+                    OnPropertyChanged("ConcentrationOfMgInMilligramsEquivalents");
+                }
             }
         }
         public double ConcentrationOfCaInMilligramsEquivalents
         {
-            get { return _concentrationOfCaInMilligramsEquivalents; }
+            get
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfCaInMilligramsEquivalents;
+                }
+                return ConcentrationOfCaInMilligramsPerLiter / 20.04; // equivalent weight Ca=20.04
+            }
             set
             {
-                _concentrationOfCaInMilligramsEquivalents = value;
-                OnPropertyChanged("ConcentrationOfCaInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfCaInMilligramsEquivalents = value;
+                    OnPropertyChanged("ConcentrationOfCaInMilligramsEquivalents");
+                    OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+                }
             }
         }
         public double ConcentrationOfClInMilligramsEquivalents
         {
-            get { return _concentrationOfClInMilligramsEquivalents; }
+            get
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfClInMilligramsEquivalents;
+                }
+                return ConcentrationOfClInMilligramsPerLiter / 35.453; // equivalent weight Cl=35.453
+            }
             set
             {
-                _concentrationOfClInMilligramsEquivalents = value;
-                OnPropertyChanged("ConcentrationOfClInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfClInMilligramsEquivalents = value;
+                    OnPropertyChanged("ConcentrationOfClInMilligramsEquivalents");
+                    OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+                }
             }
         }
         public double ConcentrationOfSoInMilligramsEquivalents
         {
-            get { return _concentrationOfSoInMilligramsEquivalents; }
+            get 
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfSoInMilligramsEquivalents;
+                }
+                return ConcentrationOfSoInMilligramsPerLiter / 48.031; // equivalent weight SO=48.031
+            }
             set
             {
-                _concentrationOfSoInMilligramsEquivalents = value;
-                OnPropertyChanged("ConcentrationOfSoInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfSoInMilligramsEquivalents = value;
+                    OnPropertyChanged("ConcentrationOfSoInMilligramsEquivalents");
+                    OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+                }
             }
         }
         public double ConcentrationOfHcoInMilligramsEquivalents
         {
-            get { return _concentrationOfHcoInMilligramsEquivalents; }
+            get 
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _concentrationOfHcoInMilligramsEquivalents;
+                }
+                return _concentrationOfHcoInMilligramsPerLiter / 61.016; // equivalent weight HCO=61.016
+            }
             set
             {
-                _concentrationOfHcoInMilligramsEquivalents = value;
-                OnPropertyChanged("ConcentrationOfHcoInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _concentrationOfHcoInMilligramsEquivalents = value;
+                    OnPropertyChanged("ConcentrationOfHcoInMilligramsEquivalents");
+                    OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+                }
             }
         }
         public double GeneralWaterHardnessInMilligramsEquivalents
         {
-            get { return _generalWaterHardnessInMilligramsEquivalents; }
+            get
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _generalWaterHardnessInMilligramsEquivalents;
+                }
+                return ConcentrationOfCaInMilligramsEquivalents + ConcentrationOfMgInMilligramsEquivalents;
+            }
             set
             {
-                _generalWaterHardnessInMilligramsEquivalents = value;
-                OnPropertyChanged("GeneralWaterHardnessInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _generalWaterHardnessInMilligramsEquivalents = value;
+                    OnPropertyChanged("GeneralWaterHardnessInMilligramsEquivalents");
+                }
             }
         }
         public double PermanentWaterHardnessInMilligramsEquivalents
         {
-            get { return _permanentWaterHardnessInMilligramsEquivalents; }
+            get 
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _permanentWaterHardnessInMilligramsEquivalents;
+                }
+                return ConcentrationOfCaInMilligramsEquivalents + ConcentrationOfMgInMilligramsEquivalents -
+                       ConcentrationOfHcoInMilligramsEquivalents;
+            }
             set
             {
-                _permanentWaterHardnessInMilligramsEquivalents = value;
-                OnPropertyChanged("PermanentWaterHardnessInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _permanentWaterHardnessInMilligramsEquivalents = value;
+                    OnPropertyChanged("PermanentWaterHardnessInMilligramsEquivalents");
+                }
             }
         }
         public double CarbonateWaterHardnessInMilligramsEquivalents
         {
-            get { return _carbonateWaterHardnessInMilligramsEquivalents; }
+            get
+            {
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    return _carbonateWaterHardnessInMilligramsEquivalents;
+                }
+                return ConcentrationOfHcoInMilligramsEquivalents;
+            }
             set
             {
-                _carbonateWaterHardnessInMilligramsEquivalents = value;
-                OnPropertyChanged("CarbonateWaterHardnessInMilligramsEquivalents");
+                if (AllowTheUserToEnterDataForMilligramsEquivalents)
+                {
+                    _carbonateWaterHardnessInMilligramsEquivalents = value;
+                    OnPropertyChanged("CarbonateWaterHardnessInMilligramsEquivalents");
+                }
             }
         }
         public double PHindicator
@@ -211,9 +350,29 @@ namespace AggressivenessOfWaterAndGround.Model.Water
                 OnPropertyChanged("PHindicator");
             }
         }
-
+        public bool AllowTheUserToEnterDataForMilligramsEquivalents
+        {
+            get { return _allowTheUserToEnterDataForMilligramsEquivalents; }
+            set
+            { 
+                _allowTheUserToEnterDataForMilligramsEquivalents = value;
+                OnPropertyChanged("AllowTheUserToEnterDataForMilligramsEquivalents");
+                OnPropertyChanged("ConcentrationOfMgInMilligramsEquivalents");
+                OnPropertyChanged("ConcentrationOfCaInMilligramsPerLiter");
+                OnPropertyChanged("ConcentrationOfClInMilligramsPerLiter");
+                OnPropertyChanged("ConcentrationOfSoInMilligramsPerLiter");
+                OnPropertyChanged("ConcentrationOfHcoInMilligramsPerLiter");
+                NaAndKWereChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NaAndKWereChanged()
+        {
+            OnPropertyChanged("ConcentrationOfNaAndKInMilligramsPerLiter");
+            OnPropertyChanged("ConcentrationOfNaAndKInMilligramsEquivalents");
+        }
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
